@@ -38,10 +38,10 @@ If the versions are displayed, it means both have been successfully installed.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-## What is package.json?
+## 1. What is package.json?
 package.json is a file that contains information about our Node.js project and its dependencies (installed packages).
 
-**How to create package.json?**
+**How to create package.json?** <br>
 This will automatically create a package.json file in your project.
 ```
 npm init -y
