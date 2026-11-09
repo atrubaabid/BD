@@ -64,3 +64,51 @@ node index.js
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
+## 3. What is Nodemon?
+Nodemon is a development tool that automatically restarts your Node.js application whenever you make changes to your code.
+
+**How to install Nodemon?**
+```
+npm i -g nodemon
+```
+
+Ye command PowerShell mein scripts run karne ki permission set karti hai, taake commands execute ho sakein.(is sy nodemon ko permission mil jaegi k meri file bar bar run ker saky)
+```
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+**How to use Nodemon?**
+```
+nodemon index
+```
+
+for making your own command instead write this in package.json file
+```json
+"start": "nodemon index"
+```
+into this
+```json
+{
+  "name": "bd",
+  "version": "1.0.0",
+  "description": "Backend Development is the process of building the server-side logic, APIs and databases that make a website or application work.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"       // <-- like this
+  }
+}
+```
+
+**How to use Nodemon?**
+```
+npm start
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
