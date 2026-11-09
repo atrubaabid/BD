@@ -35,4 +35,24 @@ npm -v
 If the versions are displayed, it means both have been successfully installed.
 
 
------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## What is package.json?
+package.json is a file that contains information about our Node.js project and its dependencies (installed packages).
+
+**How to create package.json?**
+This will automatically create a package.json file in your project.
+```
+npm init -y
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## Our First Program in Node.js
+
+```js
+console.log("Atruba console.log('Atruba');");
+```
