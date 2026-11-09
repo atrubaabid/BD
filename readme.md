@@ -54,5 +54,13 @@ npm init -y
 ## Our First Program in Node.js
 
 ```js
-console.log("Atruba console.log('Atruba');");
+console.log("Atruba");
 ```
+open terminal and run this
+```
+node index.js
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+

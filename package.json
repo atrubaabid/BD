@@ -1,0 +1,21 @@
+{
+  "name": "bd",
+  "version": "1.0.0",
+  "description": "Backend Development is the process of building the server-side logic, APIs and databases that make a website or application work.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atrubaabid/BD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/atrubaabid/BD/issues"
+  },
+  "homepage": "https://github.com/atrubaabid/BD#readme"
+}
