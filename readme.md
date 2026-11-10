@@ -108,6 +108,66 @@ npm start
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 4. MODULE IN NODE.JS
+Module is a reusable piece of code that we can use in different files of our project.
+
+**Example**
+Suppose you are creating a project. In that project:
+- app.js — Main file
+- math.js — Mathematical functions
+- user.js — User-related functions
+  
+**Importing and exporting modules**
+```
+                          Old module system       Modern module system
+                             CommonJS                       ES
+Import a module   ->         require()                    import
+Export a module   ->       module.exports                 export
+```
+
+**in package.json file**
+```
+1. "type": "module"   →   ES Modules (import/export) use kar sakte hain.
+2. "type": "commonjs"   →   CommonJS (require/module.exports) use kar sakte hain.
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 5. What is module.exports?
+module.exports is used to export code from a CommonJS module so that other files can use it.
+
+Example:<br>
+**math.js**
+```js
+function add(a, b) {
+    return a + b;
+}
+
+module.exports = add;
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+## 6. What is require()?
+require() is used to import code from another file or module in CommonJS.
+
+Example:<br>
+**app.js**
+```js
+const add = require("./math");
+
+console.log(add(10, 20));
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 
