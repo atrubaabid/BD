@@ -87,7 +87,7 @@ for making your own command instead write this in package.json file
 "start": "nodemon index"
 ```
 into this
-```json
+```js
 {
   "name": "bd",
   "version": "1.0.0",
@@ -100,12 +100,14 @@ into this
 }
 ```
 
-**How to use Nodemon?**
+**How to use your own command?**
 ```
 npm start
 ```
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 4. MODULE IN NODE.JS
 
 
 
