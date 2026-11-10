@@ -137,7 +137,7 @@ Export a module   ->       module.exports                 export
 module.exports is used to export code from a CommonJS module so that other files can use it.
 
 Example:<br>
-**math.js**
+**math.js file**
 ```js
 function add(a, b) {
     return a + b;
@@ -154,7 +154,7 @@ module.exports = add;
 require() is used to import code from another file or module in CommonJS.
 
 Example:<br>
-**app.js**
+**app.js file**
 ```js
 const add = require("./math");
 
@@ -162,7 +162,48 @@ console.log(add(10, 20));
 ```
 
 
+
+**DEFAULT AND NAME EXPORT**<br>
+*math.js file*
+```JS
+// DEFAULT-EXPORT
+function add(a, b) {
+    return a + b
+}
+
+module.exports = add;
+
+// NAME-EXPORT
+function add2(a, b) {
+    return a + b
+}
+
+let myname = "atruba";
+
+module.exports = { add2, myname };
+```
+
+
+
+
+*index.js file*
+```js
+// DEFAULT-EXPORT
+const add = require("./math.js");
+console.log(add(10,20));
+
+// NAME-EXPORT
+const { myname, add2 } = require("./math");
+
+console.log(add2(10,10));
+console.log(myname);
+```
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 7. Create Server in Node.js?
 
 
 
