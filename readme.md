@@ -247,31 +247,52 @@ localhost:3000/contact	        Contact Us
 ```
 
 ```js
-
 const http = require('http');
 
 const server = http.createServer((req, res) => {
 
     if (req.url === '/home') {
-        res.end('Welcome to Home Page');
+        let obj = {
+            status: 1,
+            data: [{
+                name: "Atruba",
+                fvtProLan: "JS"
+            },
+            {
+                name: "Atruba",
+                fvtProLan: "JS"
+            }]
+
+        }
+        res.end(JSON.stringify(obj))
+
+        // res.end('Welcome to Home Page');
+        console.log(req.url);
+
     }
 
     else if (req.url === '/about') {
         res.end('This is About Page');
+        console.log(req.url);
+
     }
 
+
     else if (req.url === '/contact') {
-        res.end('Contact Us');
+        res.end('This is Contact Us');
+        console.log(req.url);
+
     }
 
     else {
         res.end('404 Page Not Found');
+        console.log(req.url);
+
     }
 
 });
 
 server.listen(3000, () => {
-
     console.log(`Server running at http://localhost:${server.address().port}`);
 });
 
