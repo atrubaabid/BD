@@ -246,7 +246,7 @@
 
 
 // app.get('/users/:id', (req, res) => {
-    
+
 // // 3. Route Params (req.params)
 //     res.send(` your current user id is: ${req.params.id}`);
 // });
@@ -261,6 +261,80 @@
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+
+// 16. Middleware in Express.js
+
+const express = require('express');
+
+const app = express();
+let mytoken = "123456";
+let myPass = "1212"
+
+
+// Middleware 1
+app.use((req, res, next) => {
+    console.log(req.query.token);
+
+    if (req.query.token == "" || req.query.token == undefined) {
+        return res.send(
+            {
+                status: 0,
+                msg: "Please fill the token"
+            }
+        )
+    }
+
+    if (req.query.token != mytoken) {
+        return res.send(
+            {
+                status: 0,
+                msg: "Please fill the correct token"
+            }
+        )
+    }
+
+    next();
+
+});
+
+// Middleware 2
+app.use((req, res, next) => {
+    console.log(req.query.pass);
+    if (req.query.pass == "" || req.query.pass == undefined) {
+        return res.send({
+            status: 0,
+            msg: "Enter your password"
+        })
+    }
+
+    if (req.query.pass != myPass) {
+        return res.send({
+            status: 0,
+            msg: "Enter Correct password"
+        })
+    }
+
+    next()
+
+})
+
+
+
+
+// Route
+app.get('/', (req, res) => {
+
+    res.send({
+        status: 1,
+        msg: "your token is correct",
+        pass: "your password is correct"
+    });
+
+});
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
 
 
 

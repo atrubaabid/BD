@@ -611,6 +611,91 @@ your current user id is: 25
 
 ## 16. Middleware in Express.js
 Middleware is a function that runs between the request and the response.
+- Before performing the main task on your website, if you want to authenticate something, you use middleware.
+- If you satisfy the middleware condition, you can proceed to next().
+- Client → Request → Middleware → Route → Response
+- 
+```js
+
+const express = require('express');
+
+const app = express();
+let mytoken = "123456";
+let myPass = "1212"
+
+
+// Middleware 1
+app.use((req, res, next) => {
+    console.log(req.query.token);
+
+    if (req.query.token == "" || req.query.token == undefined) {
+        return res.send(
+            {
+                status: 0,
+                msg: "Please fill the token"
+            }
+        )
+    }
+
+    if (req.query.token != mytoken) {
+        return res.send(
+            {
+                status: 0,
+                msg: "Please fill the correct token"
+            }
+        )
+    }
+
+    next();
+
+});
+
+// Middleware 2
+app.use((req, res, next) => {
+    console.log(req.query.pass);
+    if (req.query.pass == "" || req.query.pass == undefined) {
+        return res.send({
+            status: 0,
+            msg: "Enter your password"
+        })
+    }
+
+    if (req.query.pass != myPass) {
+        return res.send({
+            status: 0,
+            msg: "Enter Correct password"
+        })
+    }
+
+    next();
+
+})
+
+
+
+
+// Route
+app.get('/', (req, res) => {
+
+    res.send({
+        status: 1,
+        msg: "your token is correct",
+        pass: "your password is correct"
+    });
+
+});
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
+
+```
+- **app.use()** middleware register karne ke liye use hota hai.
+- **req** → Client ki request.
+- **res** → Server ka response.
+- **next()** → Next middleware ya route par jane ke liye.
+
+
 
 
 
