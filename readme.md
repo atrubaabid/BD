@@ -772,7 +772,7 @@ const apiKey = "abc123xyz";
 const PORT = 3000;
 ```
 - If you upload this code to GitHub, sensitive information may also become public.That's why we use a .env file.
-- Create a file named .env in your project's root folder.
+- Create a file named **.env** in your project's root folder.
 ```
 MyProject/
 │
@@ -819,6 +819,54 @@ console.log(process.env.PORT);
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 19. Introduction to MongoDB
+- MongoDB is a NoSQL database that stores data in flexible, JSON-like documents.
+- Database is an organized collection of data where we can store, manage, update, and retrieve information.
+
+
+## 20. MongoDB Installation and Setup
+- Open the official MongoDB download website: **MongoDB Community Server**
+- Version: **Latest stable version.**
+- Platform: **Windows.**
+- Package: **msi.**
+
+**Install MongoDB**
+Open the downloaded .msi file.
+1. Click **Next**.
+2. Accept the license agreement.
+3. Choose **Complete** setup.
+4. Click **Next**, then **Install**.
+
+
+**MongoDB Commands Cheat Sheet**
+```
+show dbs  ||  show database
+use databaseName
+
+show collections
+db.createCollection()
+db.collectionName.renameCollection()
+db.collectionName.drop()
+
+db.dropDatabase()
+
+db.collectionName.insertOne()
+db.collectionName.insertMany()
+
+db.collectionName.find()
+
+db.collectionName.updateOne()
+db.collectionName.updateMany()
+db.collectionName.replaceOne()
+
+db.collectionName.deleteOne()
+db.collectionName.deleteMany()
+
+```
+
+
 
 
 

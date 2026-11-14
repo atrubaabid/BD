@@ -404,13 +404,13 @@
 
 //  18. What is .env  &  Setting up .env in Node.js  
 
-const express = require('express');
-require('dotenv').config();
-const app = express();
+// const express = require('express');
+// require('dotenv').config();
+// const app = express();
 
-console.log(process.env.password);
-console.log(process.env.apikey);
-console.log(process.env.PORT);
+// console.log(process.env.password);
+// console.log(process.env.apikey);
+// console.log(process.env.PORT);
 
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
