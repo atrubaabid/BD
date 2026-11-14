@@ -264,81 +264,136 @@
 
 // 16. Middleware in Express.js
 
+// const express = require('express');
+
+// const app = express();
+// let mytoken = "123456";
+// let myPass = "1212"
+
+
+// // Middleware 1
+// app.use((req, res, next) => {
+//     console.log(req.query.token);
+
+//     if (req.query.token == "" || req.query.token == undefined) {
+//         return res.send(
+//             {
+//                 status: 0,
+//                 msg: "Please fill the token"
+//             }
+//         )
+//     }
+
+//     if (req.query.token != mytoken) {
+//         return res.send(
+//             {
+//                 status: 0,
+//                 msg: "Please fill the correct token"
+//             }
+//         )
+//     }
+
+//     next();
+
+// });
+
+// // Middleware 2
+// app.use((req, res, next) => {
+//     console.log(req.query.pass);
+//     if (req.query.pass == "" || req.query.pass == undefined) {
+//         return res.send({
+//             status: 0,
+//             msg: "Enter your password"
+//         })
+//     }
+
+//     if (req.query.pass != myPass) {
+//         return res.send({
+//             status: 0,
+//             msg: "Enter Correct password"
+//         })
+//     }
+
+//     next();
+
+// })
+
+
+
+
+// // Route
+// app.get('/', (req, res) => {
+
+//     res.send({
+//         status: 1,
+//         msg: "your token is correct",
+//         pass: "your password is correct"
+//     });
+
+// });
+
+// app.listen(3000, () => {
+//     console.log('Server running on port 3000');
+// });
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 17. Route Level Middleware in Express.js
+
+
+
 const express = require('express');
-
 const app = express();
-let mytoken = "123456";
-let myPass = "1212"
+let myToken = '123456';
 
 
-// Middleware 1
-app.use((req, res, next) => {
-    console.log(req.query.token);
+// Route Level Middleware
+let checkToken = (req, res, next) => {
 
     if (req.query.token == "" || req.query.token == undefined) {
         return res.send(
             {
-                status: 0,
-                msg: "Please fill the token"
+                status: true,
+                msg: "Fill the token"
             }
         )
     }
 
-    if (req.query.token != mytoken) {
+    if (req.query.token != myToken) {
         return res.send(
             {
-                status: 0,
-                msg: "Please fill the correct token"
+                status: true,
+                msg: "Fill the correct token"
             }
         )
     }
 
     next();
+}
 
-});
 
-// Middleware 2
-app.use((req, res, next) => {
-    console.log(req.query.pass);
-    if (req.query.pass == "" || req.query.pass == undefined) {
-        return res.send({
-            status: 0,
-            msg: "Enter your password"
-        })
-    }
 
-    if (req.query.pass != myPass) {
-        return res.send({
-            status: 0,
-            msg: "Enter Correct password"
-        })
-    }
-
-    next()
-
+app.get('/', (req, res) => {
+    res.send({
+        status: true,
+        msg: "i'm home page"
+    })
 })
 
 
-
-
-// Route
-app.get('/', (req, res) => {
-
+app.get('/about', checkToken, (req, res) => {
     res.send({
-        status: 1,
-        msg: "your token is correct",
-        pass: "your password is correct"
-    });
+        status: true,
+        msg: "i'm About page"
+    })
+})
 
-});
 
 app.listen(3000, () => {
     console.log('Server running on port 3000');
-});
-
-
-
-
+})
 
 
 

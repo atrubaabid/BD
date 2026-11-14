@@ -696,6 +696,73 @@ app.listen(3000, () => {
 - **next()** → Next middleware ya route par jane ke liye.
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+## 17. Route Level Middleware in Express.js
+Route-level middleware is middleware that runs only on specific routes instead of the entire application.
+
+
+```js
+
+const express = require('express');
+const app = express();
+let myToken = '123456';
+
+
+// Route Level Middleware
+let checkToken = (req, res, next) => {
+
+    if (req.query.token == "" || req.query.token == undefined) {
+        return res.send(
+            {
+                status: true,
+                msg: "Fill the token"
+            }
+        )
+    }
+
+    if (req.query.token != myToken) {
+        return res.send(
+            {
+                status: true,
+                msg: "Fill the correct token"
+            }
+        )
+    }
+
+    next();
+}
+
+
+
+app.get('/', (req, res) => {
+    res.send({
+        status: true,
+        msg: "i'm home page"
+    })
+})
+
+
+app.get('/about', checkToken, (req, res) => {
+    res.send({
+        status: true,
+        msg: "i'm About page"
+    })
+})
+
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+})
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
