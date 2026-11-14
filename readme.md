@@ -528,7 +528,7 @@ POST Request
 http://localhost:3000/users
 ```
 
-When you write this in thunder Client Body panel 
+**When you write this in thunder Client Body panel**
 ```js
 {
   "name": "Atruba",
@@ -536,7 +536,8 @@ When you write this in thunder Client Body panel
   "password": "123456"
 }
 ```
-req.body Response this
+
+**req.body Response this**
 ```js
 {
   "name": "Atruba",
@@ -578,7 +579,7 @@ When you write this in thunder Client Query panel then you get this link (http:/
 - **req.query.email** se email milegi.
 
 
-req.query Response this
+**req.query Response this**
 ```js
 {
   "name": "Atruba",
@@ -588,6 +589,25 @@ req.query Response this
 ```
 
 -----------------------------------------------------------------------
+
+### 3. Route Params (req.params)
+```js
+app.get('/users/:id', (req, res) => {
+    res.send(` your current user id is: ${req.params.id}`);
+});
+```
+**Thunder Client:**
+GET Request
+```
+http://localhost:3000/users/25
+```
+
+**Response**
+```
+your current user id is: 25
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
