@@ -612,9 +612,9 @@ your current user id is: 25
 ## 16. Middleware in Express.js
 Middleware is a function that runs between the request and the response.
 - Before performing the main task on your website, if you want to authenticate something, you use middleware.
-- If you satisfy the middleware condition, you can proceed to next().
+- If you satisfy the middleware condition, you can proceed to **next()**.
 - Client → Request → Middleware → Route → Response
-- 
+  
 ```js
 
 const express = require('express');
