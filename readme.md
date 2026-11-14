@@ -220,14 +220,14 @@ server.listen(3000, () => {
 });
 
 ```
-- http module helps us create a server.
-- require() imports a module into our file.
-- createServer() creates the server.
-- req receives client request information.
-- res sends a response to the client.
-- res.write() sends data to the client.
-- res.end() tells the server that the response is complete.
-- listen(3000) starts the server on port 3000.
+- **http** module helps us create a server.
+- **require()** imports a module into our file.
+- **createServer()** creates the server.
+- **req** receives client request information.
+- **res** sends a response to the client.
+- **res.write()** sends data to the client.
+- **res.end()** tells the server that the response is complete.
+- **listen(3000)** starts the server on port 3000.
 
 **How to Run Your Server**
 ```
@@ -276,8 +276,8 @@ server.listen(3000, () => {
 });
 
 ```
-- req.url	Gets the requested URL path
-- server.address().port	Gets the actual port number
+- **req.url** Gets the requested URL path
+- **server.address().port**	Gets the actual port number
 
 
 
