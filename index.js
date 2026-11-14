@@ -56,52 +56,199 @@
 
 // 8. What is URL Routing??
 
-const http = require('http');
-const server = http.createServer((req, res) => {
-    if (req.url === '/home') {
-        let obj = {
-            status: 1,
-            data: [{
-                name: "Atruba",
-                fvtProLan: "JS"
-            },
-            {
-                name: "Atruba",
-                fvtProLan: "JS"
-            }]
+// const http = require('http');
+// const server = http.createServer((req, res) => {
+//     if (req.url === '/home') {
+//         let obj = {
+//             status: 1,
+//             data: [{
+//                 name: "Atruba",
+//                 fvtProLan: "JS"
+//             },
+//             {
+//                 name: "Atruba",
+//                 fvtProLan: "JS"
+//             }]
 
-        }
-        res.end(JSON.stringify(obj))
+//         }
+//         res.end(JSON.stringify(obj))
 
-        // res.end('Welcome to Home Page');
-        console.log(req.url);
+//         // res.end('Welcome to Home Page');
+//         console.log(req.url);
 
-    }
+//     }
 
-    else if (req.url === '/about') {
-        res.end('This is About Page');
-        console.log(req.url);
+//     else if (req.url === '/about') {
+//         res.end('This is About Page');
+//         console.log(req.url);
 
-    }
+//     }
 
 
-    else if (req.url === '/contact') {
-        res.end('This is Contact Us');
-        console.log(req.url);
+//     else if (req.url === '/contact') {
+//         res.end('This is Contact Us');
+//         console.log(req.url);
 
-    }
+//     }
 
-    else {
-        res.end('404 Page Not Found');
-        console.log(req.url);
+//     else {
+//         res.end('404 Page Not Found');
+//         console.log(req.url);
 
-    }
+//     }
+
+// });
+
+// server.listen(3000, () => {
+//     console.log(`Server running at http://localhost:${server.address().port}`);
+// });
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 10. Write Your First Express.js Code
+
+// const express = require('express');
+
+// const app = express();
+
+// app.get('/', (req, res) => {
+//     // res.send('Hello! Welcome to Express.js');
+//     res.send({status:1,msg:"Home page API"})
+// });
+
+// app.listen(3000, () => {
+//     console.log('Server is running at http://localhost:3000');
+// });
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+//  11. Routing in Express.js
+
+// const express = require('express');
+
+// const app = express();
+
+// // Home Route
+// app.get('/', (req, res) => {
+//     console.log(res);
+//     res.send('Welcome to Home Page');
+//     // res.send({status:1,msg:"Home page API"})
+
+
+// });
+
+// // About Route
+// app.get('/about', (req, res) => {
+//     res.send('This is About Page');
+// });
+
+// // Contact Route
+// app.get('/contact', (req, res) => {
+//     res.send('Contact Us');
+// });
+
+// // Services Route
+// app.get('/services', (req, res) => {
+//     res.send('Our Services');
+// });
+
+
+// //  12. What if the URL Doesn't Exist?
+// app.use((req, res) => {
+//     res.status(404).send("404 Page error")
+// }
+
+// )
+
+// app.listen(3000, () => {
+//     console.log('Server is running on port 3000');
+// });
+
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------readme update
+
+
+
+// const express = require('express');
+
+// const app = express();
+
+// // GET Request
+// app.get('/users', (req, res) => {
+
+//     let users = [
+//         {
+//             name: 'Atruba',
+//             age: 22
+//         },
+//         {
+//             name: 'Ali',
+//             age: 25
+//         }
+//     ];
+
+//     res.status(200).json(users);
+
+// });
+
+
+
+// app.post('/users', (req, res) => {
+//     res.status(201).send('User Created Successfully');
+// });
+
+
+
+// app.listen(3000, () => {
+//     console.log('Server running on port 3000');
+// });
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//  13. POST Methods in Express.js  
+
+const express = require('express');
+
+const app = express();
+
+// Middleware  ->  express.json() parses incoming JSON data and makes it available through req.body.
+app.use(express.json());
+
+
+// POST Method
+app.post('/users', (req, res) => {
+
+    console.log(req.body);
+
+    res.status(201).json({
+        message: 'User created successfully',
+        body: req.body
+    });
 
 });
 
-server.listen(3000, () => {
-    console.log(`Server running at http://localhost:${server.address().port}`);
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
 });
+
+
 
 
 

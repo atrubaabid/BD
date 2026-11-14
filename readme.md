@@ -237,7 +237,8 @@ nodemon index   OR   npm start
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 8. What is URL Routing??
+
+## 8. What is URL Routing?
 URL routing means displaying different responses for different URLs.
 ```
 URL	                            Response
@@ -299,6 +300,180 @@ server.listen(3000, () => {
 ```
 - **req.url** Gets the requested URL path
 - **server.address().port**	Gets the actual port number
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 9. What is Express.js??
+Express.js is a web framework for Node.js that makes it easier to create servers, handle requests, and build APIs.
+
+**Install Express.js**
+in your Project type this commands
+```
+npm init -y     ->   package.json
+npm install express     ->    install Express.js package in your project
+npm i express           ->    install Express.js package in your project
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+## 10. Write Your First Express.js Code
+```js
+const express = require('express');
+
+const app = express();
+
+app.get('/', (req, res) => {
+    // res.send('Hello! Welcome to Express.js');
+    res.send({status:1,msg:"Home page API"})
+
+});
+
+app.listen(3000, () => {
+    console.log('Server is running at http://localhost:3000');
+});
+
+```
+- **require()** Express package ko import karta hai.
+- **express()** Express application create karta hai.
+- **app** ke through hum server ki functionality handle karenge.
+- **app.get()** GET request handle karta hai.
+- **'/'** website ka home route hai (root URL hai).
+- **res.send()** browser ko response send karta hai & also convert obj into JSON.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 11. Routing in Express.js
+
+
+```js
+
+const express = require('express');
+
+const app = express();
+
+// Home Route
+app.get('/', (req, res) => {
+    res.send('Welcome to Home Page');  // localhost:3000/
+});
+
+// About Route
+app.get('/about', (req, res) => {
+    res.send('This is About Page');  // localhost:3000/about
+});
+
+// Contact Route
+app.get('/contact', (req, res) => {
+    res.send('Contact Us');   // localhost:3000/contact
+});
+
+// Services Route
+app.get('/services', (req, res) => {
+    res.send('Our Services');  // localhost:3000/services
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+## 12. What if the URL Doesn't Exist?
+
+```js
+app.use((req, res) => {
+    res.status(404).send('404 Page Not Found');
+});
+```
+- app.use() middleware register karta hai.
+- res.status(404) response ka HTTP status code set karta hai.
+- Is code ko baaki routes ke baad aur app.listen() se pehle likho:
+
+
+**What is an HTTP Status Code?**
+Jab client server ko request send karta hai, toh server response ke saath ek status code bhi send karta hai.
+
+
+**Common HTTP Status Codes**
+```
+Status Code     	Meaning	                     When to use
+200	                OK	                         Request successful
+201	                Created                      New data created
+400	                Bad Request	                 Client sent invalid data
+401	                Unauthorized	             Authentication required
+403	                Forbidden	                 Access not allowed
+404	                Not Found	                 Resource not found
+500	                Internal Server Error	     Server-side error
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+## 13. POST Methods in Express.js   
+```js
+const express = require('express');
+
+const app = express();
+
+// Middleware 
+app.use(express.json());
+
+
+// POST Method
+app.post('/users', (req, res) => {
+
+    console.log(req.body);
+
+    res.status(201).json({
+        message: 'User created successfully',
+        body: req.body
+    });
+
+});
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
+
+```
+- **Middleware: app.use(express.json())** parses incoming JSON data and makes it accessible through req.body.
+- **POST Route: app.post('/users', ...)** creates a POST endpoint to receive user data.
+- **req.body**: Gets the data sent by the client (e.g., Thunder Client).
+- **res.status(201)**: Sends HTTP status code 201 (Created), indicating that a resource has been created.
+- **res.json()**: Sends a JSON response containing a success message and the received user data.
+
+This code creates a POST API that receives JSON data from the client, accesses it through req.body, and sends back a success response.
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

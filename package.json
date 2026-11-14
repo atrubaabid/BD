@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/atrubaabid/BD/issues"
   },
-  "homepage": "https://github.com/atrubaabid/BD#readme"
+  "homepage": "https://github.com/atrubaabid/BD#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
 }
