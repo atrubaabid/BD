@@ -762,6 +762,69 @@ app.listen(3000, () => {
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+## 18. What is .env  &  Setting up .env in Node.js  
+.env is a file used to store environment variables and sensitive information such as API keys, passwords, and database credentials.<br>
+
+**such as**
+```js
+const password = "mySecret123";
+const apiKey = "abc123xyz";
+const PORT = 3000;
+```
+- If you upload this code to GitHub, sensitive information may also become public.That's why we use a .env file.
+- Create a file named .env in your project's root folder.
+```
+MyProject/
+│
+├── index.js
+│
+├── .env      ->  this is our .env file
+│
+├── node_modules/
+│
+└── package.json
+```
+Write your sensitive information in your .env file.
+```
+password=mySecret123
+apiKey=abc123xyz
+PORT=3000
+```
+
+**To use data from the .env file, you need to install the dotenv package.**<br>
+First, you need to visit this URL.
+```
+https://www.npmjs.com/package/dotenv
+```
+And run this command in your terminal.
+```
+npm i dotenv
+```
+It loads the variables from the **.env** file.
+```js
+require('dotenv').config();
+```
+you can use it like this
+```js
+
+const express = require('express');
+require('dotenv').config();
+const app = express();
+
+console.log(process.env.password);
+console.log(process.env.apikey);
+console.log(process.env.PORT);
+```
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 

@@ -344,57 +344,76 @@
 
 
 
+// const express = require('express');
+// const app = express();
+
+// let myToken = '123456';
+
+
+// // Route Level Middleware
+// let checkToken = (req, res, next) => {
+
+//     if (req.query.token == "" || req.query.token == undefined) {
+//         return res.send(
+//             {
+//                 status: true,
+//                 msg: "Fill the token"
+//             }
+//         )
+//     }
+
+//     if (req.query.token != myToken) {
+//         return res.send(
+//             {
+//                 status: true,
+//                 msg: "Fill the correct token"
+//             }
+//         )
+//     }
+
+//     next();
+// }
+
+
+
+// app.get('/', (req, res) => {
+
+//     res.send({
+//         status: true,
+//         msg: "i'm home page"
+//     })
+// })
+
+
+// app.get('/about', checkToken, (req, res) => {
+//     res.send({
+//         status: true,
+//         msg: "i'm About page"
+//     })
+// })
+
+
+// app.listen(3000, () => {
+//     console.log('Server running on port 3000');
+// })
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//  18. What is .env  &  Setting up .env in Node.js  
+
 const express = require('express');
+require('dotenv').config();
 const app = express();
-let myToken = '123456';
+
+console.log(process.env.password);
+console.log(process.env.apikey);
+console.log(process.env.PORT);
 
 
-// Route Level Middleware
-let checkToken = (req, res, next) => {
-
-    if (req.query.token == "" || req.query.token == undefined) {
-        return res.send(
-            {
-                status: true,
-                msg: "Fill the token"
-            }
-        )
-    }
-
-    if (req.query.token != myToken) {
-        return res.send(
-            {
-                status: true,
-                msg: "Fill the correct token"
-            }
-        )
-    }
-
-    next();
-}
-
-
-
-app.get('/', (req, res) => {
-    res.send({
-        status: true,
-        msg: "i'm home page"
-    })
-})
-
-
-app.get('/about', checkToken, (req, res) => {
-    res.send({
-        status: true,
-        msg: "i'm About page"
-    })
-})
-
-
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
-})
-
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
