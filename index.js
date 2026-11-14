@@ -216,43 +216,46 @@
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-//  14. POST Methods in Express.js
-
-const express = require('express');
-
-const app = express();
-
-// Middleware  ->  express.json() parses incoming JSON data and makes it available through req.body.
-app.use(express.json());
+//  14. POST Methods in Express.js   &  15. Body, Query aur Params
 
 
-// POST Method
-app.post('/users', (req, res) => {
+// const express = require('express');
 
-    // 1. Body (req.body)
-    console.log(req.body);
-    // 2. Query(req.query)
-    console.log(req.query);
+// const app = express();
 
-    res.status(201).json({
-        message: 'User created successfully',
-        body: req.body,
-        query: req.query
-    });
-
-});
+// // Middleware  ->  express.json() parses incoming JSON data and makes it available through req.body.
+// app.use(express.json());
 
 
+// // POST Method
+// app.post('/users', (req, res) => {
 
-app.get('/users/:id', (req, res) => {
-    res.send(` your current user id is: ${req.params.id}`);
-});
+//     // 1. Body (req.body)
+//     console.log(req.body);
+//     // 2. Query(req.query)
+//     console.log(req.query);
+
+//     res.status(201).json({
+//         message: 'User created successfully',
+//         body: req.body,
+//         query: req.query
+//     });
+
+// });
 
 
 
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
-});
+// app.get('/users/:id', (req, res) => {
+    
+// // 3. Route Params (req.params)
+//     res.send(` your current user id is: ${req.params.id}`);
+// });
+
+
+
+// app.listen(3000, () => {
+//     console.log('Server running on port 3000');
+// });
 
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
