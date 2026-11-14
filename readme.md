@@ -204,6 +204,85 @@ console.log(myname);
 
 
 ## 7. Create Server in Node.js?
+A server is a computer or program that receives requests from clients and sends responses back.
+
+```js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    res.write('Hello! Welcome to my server.');
+    res.end();
+});
+
+server.listen(3000, () => {
+    // This displays a message in the terminal when the server starts.
+    console.log('Server is running on port 3000');
+});
+
+```
+- http module helps us create a server.
+- require() imports a module into our file.
+- createServer() creates the server.
+- req receives client request information.
+- res sends a response to the client.
+- res.write() sends data to the client.
+- res.end() tells the server that the response is complete.
+- listen(3000) starts the server on port 3000.
+
+**How to Run Your Server**
+```
+nodemon index   OR   npm start
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 8. What is URL Routing??
+URL routing means displaying different responses for different URLs.
+```
+URL	                            Response
+localhost:3000/home	            Welcome to Home Page
+localhost:3000/about	        This is About Page
+localhost:3000/contact	        Contact Us
+```
+
+```js
+
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+
+    if (req.url === '/home') {
+        res.end('Welcome to Home Page');
+    }
+
+    else if (req.url === '/about') {
+        res.end('This is About Page');
+    }
+
+    else if (req.url === '/contact') {
+        res.end('Contact Us');
+    }
+
+    else {
+        res.end('404 Page Not Found');
+    }
+
+});
+
+server.listen(3000, () => {
+
+    console.log(`Server running at http://localhost:${server.address().port}`);
+});
+
+```
+- req.url	Gets the requested URL path
+- server.address().port	Gets the actual port number
+
+
+
+
+
 
 
 
