@@ -511,7 +511,7 @@ This code creates a POST API that receives JSON data from the client, accesses i
 
 
 
-#### 1. Body (req.body)
+### 1. Body (req.body)
 ```js
 app.use(express.json());
 
@@ -547,7 +547,7 @@ req.body Response this
 
 -----------------------------------------------------------------------
 
-#### 2. Query (req.query)
+### 2. Query (req.query)
 ```js
 app.use(express.json());
 
