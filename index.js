@@ -181,6 +181,7 @@
 
 //-----------------------------------------------------------------------------------------------------------------------readme update
 
+//  13. Get Methods in Express.js   
 
 
 // const express = require('express');
@@ -206,13 +207,6 @@
 // });
 
 
-
-// app.post('/users', (req, res) => {
-//     res.status(201).send('User Created Successfully');
-// });
-
-
-
 // app.listen(3000, () => {
 //     console.log('Server running on port 3000');
 // });
@@ -222,7 +216,7 @@
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-//  13. POST Methods in Express.js  
+//  14. POST Methods in Express.js
 
 const express = require('express');
 
@@ -235,11 +229,15 @@ app.use(express.json());
 // POST Method
 app.post('/users', (req, res) => {
 
+    // 1. Body (req.body)
     console.log(req.body);
+    // 2. Query(req.query)
+    console.log(req.query);
 
     res.status(201).json({
         message: 'User created successfully',
-        body: req.body
+        body: req.body,
+        query: req.query
     });
 
 });
@@ -247,6 +245,9 @@ app.post('/users', (req, res) => {
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

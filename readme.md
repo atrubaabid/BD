@@ -421,9 +421,48 @@ Status Code     	Meaning	                     When to use
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
+## 13. Get Methods in Express.js   
+GET method is used to retrieve or fetch data from the server.
+
+```js
+
+const express = require('express');
+
+const app = express();
+
+// GET Request
+app.get('/users', (req, res) => {
+
+    let users = [
+        {
+            name: 'Atruba',
+            age: 22
+        },
+        {
+            name: 'Ali',
+            age: 25
+        }
+    ];
+
+    res.status(200).json(users);
+
+});
 
 
-## 13. POST Methods in Express.js   
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
+
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+## 14. POST Methods in Express.js   
+POST method is used to send data to the server to create a new resource.
+
 ```js
 const express = require('express');
 
@@ -462,6 +501,100 @@ This code creates a POST API that receives JSON data from the client, accesses i
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 15. Body, Query aur Params
+
+1. Body: Used to send data to the server inside the request body(req.body).
+2. Query: Used to send extra information through the URL after ?.
+3. Params: Used to get dynamic values from the URL path.
+
+
+
+#### 1. Body (req.body)
+```js
+app.use(express.json());
+
+app.post('/users', (req, res) => {
+    console.log(req.body);
+
+    res.json(req.body);
+});
+```
+
+**Thunder Client:**
+POST Request
+```
+http://localhost:3000/users
+```
+
+When you write this in thunder Client Body panel 
+```js
+{
+  "name": "Atruba",
+  "email": "atruba@gmail.com",
+  "password": "123456"
+}
+```
+req.body Response this
+```js
+{
+  "name": "Atruba",
+  "email": "atruba@gmail.com",
+  "password": "123456"
+}
+```
+
+-----------------------------------------------------------------------
+
+#### 2. Query (req.query)
+```js
+app.use(express.json());
+
+app.post('/users', (req, res) => {
+    console.log(req.query);
+
+    res.json(req.query);
+});
+```
+**Thunder Client:**
+POST Request
+```
+http://localhost:3000/users
+```
+
+When you write this in thunder Client Query panel then you get this link (http://localhost:3000/users?name=atruba&email=atruba@gmail.com&pass=12345)
+```js
+{
+  "name": "Atruba",
+  "email": "atruba@gmail.com",
+  "password": "123456"
+}
+```
+- **?** query parameters start karta hai.
+- **name=atruba** pehla query parameter hai.
+- **&** multiple query parameters ko separate karta hai.
+- **req.query.name** se name milega.
+- **req.query.email** se email milegi.
+
+
+req.query Response this
+```js
+{
+  "name": "Atruba",
+  "email": "atruba@gmail.com",
+  "password": "123456"
+}
+```
+
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 
