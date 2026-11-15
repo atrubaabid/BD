@@ -842,13 +842,13 @@ Open the downloaded .msi file.
 
 **MongoDB Commands Cheat Sheet**
 ```
-show dbs  ||  show database
-use databaseName
+show dbs  ||  show database  ->  show our data
+use databaseName  ->   create our database
 
-show collections
-db.createCollection()
-db.collectionName.renameCollection()
-db.collectionName.drop()
+db.createCollection("collectionName")   ->  create collection
+db.collectionName.drop()   ->  delete collection
+db.oldCollectionName.renameCollection("newCollectionName")   ->  rename our collection name
+show collections   ->  see our all collections
 
 db.dropDatabase()
 
