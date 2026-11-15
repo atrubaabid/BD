@@ -846,33 +846,36 @@ CREATE DATABASE
 show dbs  ||  show database    =>    [show our data]
 use databaseName               =>    [create our database and switch in that collection]
 db.dropDatabase()
+------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE COLLECTION
 db.createCollection("collectionName")                           =>    [create collection]
 db.collectionName.drop()                                        =>    [delete collection]
 db.oldCollectionName.renameCollection("newCollectionName")      =>    [rename our collection name]
 show collections                                                =>    [see our all collections] 
-
+------------------------------------------------------------------------------------------------------------------------------------
 
 DATA INSERT
 db.collectionName.insertOne()         =>    [Add any one data in your DB]
 db.collectionName.insertMany([{}])    =>    [add many entries like an array with multiple objects]
-
+------------------------------------------------------------------------------------------------------------------------------------
 
 DATA FIND
 db.collectionName.find()                                                  =>  [show all our data in DB]
 db.collectionName.find().pretty()                                         =>  [show all our data in DB work same as find()]
 db.collectionName.find({"name":"Atruba"})                                 =>  [for find specific data]
 db.collectionName.findOne({_id: ObjectId('6af9ba3de7329610cf91789a')})    =>  [give only one matching result]
+------------------------------------------------------------------------------------------------------------------------------------
 
 DATA UPDATE
 db.collectionName.updateOne({"name":"oldname"},{$set:{"name":"newname"}})   =>  [update only one entry data]
 db.collectionName.updateMany()
 db.collectionName.replaceOne()
+------------------------------------------------------------------------------------------------------------------------------------
 
 DATA DELETE
 db.collectionName.deleteOne({"name": "Atruba"})    =>     [delete only one matching result]
-db.collectionName.deleteMany()                     =>     [delete many entries like multiple objects]
+db.collectionName.deleteMany({},{})                =>     [delete many entries like multiple objects]
 
 ```
 
