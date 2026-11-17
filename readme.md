@@ -825,8 +825,7 @@ console.log(process.env.PORT);
 - MongoDB is a NoSQL database that stores data in flexible, JSON-like documents.
 - Database is an organized collection of data where we can store, manage, update, and retrieve information.
 
-
-## 20. MongoDB Installation and Setup
+**MongoDB Installation and Setup**
 - Open the official MongoDB download website: **MongoDB Community Server**
 - Version: **Latest stable version.**
 - Platform: **Windows.**
@@ -878,6 +877,26 @@ db.collectionName.deleteOne({"name": "Atruba"})    =>     [delete only one match
 db.collectionName.deleteMany({},{})                =>     [delete many entries like multiple objects]
 
 ```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 20. Connect MongoDB with Node.js (insert & view API)
+
+To connect MongoDB with Node.js, you need to install the **MongoDB Node.js Driver** package.<br>
+First, go to this URL:
+```
+https://www.npmjs.com/package/mongodb
+```
+Then, run the following command in your terminal:
+```
+npm i mongodb
+```
+Your package is now successfully installed!
+
+
+
 
 
 
