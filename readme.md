@@ -882,7 +882,7 @@ db.collectionName.deleteMany({},{})                =>     [delete many entries l
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-## 20. Connect MongoDB with Node.js (insert & view API)
+## 20. Connect MongoDB with Node.js (insert, view, delete & update API (CRUD))
 
 To connect MongoDB with Node.js, you need to install the **MongoDB Node.js Driver** package.<br>
 First, go to this URL:
@@ -893,7 +893,131 @@ Then, run the following command in your terminal:
 ```
 npm i mongodb
 ```
-Your package is now successfully installed!
+Your package is now successfully installed!<br>
+
+**1. Connect MongoDB with Node.js**
+```js
+const express = require("express")
+const app = express();
+
+const { MongoClient, ObjectId } = require("mongodb");
+
+// Connection URL
+const DBurl = 'mongodb://127.0.0.1:27017'    // using a host of 127.0.0.1 in place of localhost
+const client = new MongoClient(DBurl);
+
+app.use(express.json())
+
+// DB Connection
+const dbConnection = async () => {
+    await client.connect();
+    let db = client.db("MongoDB-CRUD");
+    return db;
+}
+```
+**2. POST API -> Create**
+```js
+// Create
+app.post('/student-insert', async (req, res) => {
+
+    let db = await dbConnection();
+    let students = db.collection('CRUD-Data');
+
+    let { name, email } = req.body;
+
+    let obj = { name, email };
+
+    let checkEmail = students.findOne({ email });
+    if (checkEmail) {
+        return res.send("Email  Already Exist")
+    }
+
+
+    let insertData = await students.insertOne(obj)
+
+    res.send({
+        obj,
+        insertData
+    }
+    )
+})
+```
+**3. GET API -> Read**
+```js
+// Read
+app.get('/student-read', async (req, res) => {
+    let db = await dbConnection();
+    let students = db.collection('CRUD-Data');
+
+    let readData = await students.find().toArray();
+    res.send(readData)
+})
+```
+**4. DELETE API -> Delete**
+```js
+// delete
+// app.delete('/student.delete/:id?', async (req, res) => {         // ? is Optional
+app.delete('/student-delete/:id', async (req, res) => {
+    let db = await dbConnection();
+    let students = db.collection('CRUD-Data');
+
+    let { id } = req.params;
+
+    let deleteData = await students.deleteOne({ _id: new ObjectId(id) })
+
+    res.send({
+        id,
+        deleteData
+    }
+    )
+
+})
+```
+**5. UPDATE API -> update**
+```js
+// Update
+app.put('/student-update/:id', async (req, res) => {
+    let db = await dbConnection();
+    let students = db.collection('CRUD-Data');
+
+    let { id } = req.params;
+    let { name, email } = req.body;
+
+    let obj = {};
+
+    if (name !== '' && name !== undefined && name !== null) {
+        obj["name"] = name
+    }
+
+    if (email !== '' && email !== undefined && email !== null) {
+        obj["email"] = email
+    }
+
+
+    let updateData = await students.updateOne({ _id: new ObjectId(id) }, { $set: obj })
+
+    res.send({
+        obj,
+        updateData
+    })
+
+
+
+})
+
+
+app.listen(8000)
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 21. Intro to MONGOOSE for MongoDB & CRUD Opr
+
+
+
+
+
 
 
 

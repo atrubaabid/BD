@@ -417,7 +417,7 @@
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-// 20. Connect MongoDB with Node.js (insert & view API)
+// 20. Connect MongoDB with Node.js (insert, view, delete & update API (CRUD))
 
 const express = require("express")
 const app = express();
