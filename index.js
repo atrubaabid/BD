@@ -419,116 +419,223 @@
 
 // 20. Connect MongoDB with Node.js (insert, view, delete & update API (CRUD))
 
-const express = require("express")
-const app = express();
+// const express = require("express")
+// const app = express();
 
-const { MongoClient, ObjectId } = require("mongodb");
+// const { MongoClient, ObjectId } = require("mongodb");
 
-// Connection URL
-const DBurl = 'mongodb://127.0.0.1:27017'    // using a host of 127.0.0.1 in place of localhost
-const client = new MongoClient(DBurl);
+// // Connection URL
+// const DBurl = 'mongodb://127.0.0.1:27017'    // using a host of 127.0.0.1 in place of localhost
+// const client = new MongoClient(DBurl);
 
-app.use(express.json())
+// app.use(express.json())
 
-// DB Connection
-const dbConnection = async () => {
-    await client.connect();
-    let db = client.db("MongoDB-CRUD");
-    return db;
-}
-
-
-// Create
-app.post('/student-insert', async (req, res) => {
-
-    let db = await dbConnection();
-    let students = db.collection('CRUD-Data');
-
-    let { name, email } = req.body;
-
-    let obj = { name, email };
-
-    let checkEmail = students.findOne({ email });
-    if (checkEmail) {
-        return res.send("Email  Already Exist")
-    }
+// // DB Connection
+// const dbConnection = async () => {
+//     await client.connect();
+//     let db = client.db("MongoDB-CRUD");
+//     return db;
+// }
 
 
-    let insertData = await students.insertOne(obj)
+// // Create
+// app.post('/student-insert', async (req, res) => {
 
-    res.send({
-        obj,
-        insertData
-    }
-    )
-})
+//     let db = await dbConnection();
+//     let students = db.collection('CRUD-Data');
 
+//     let { name, email } = req.body;
 
-// Read
-app.get('/student-read', async (req, res) => {
-    let db = await dbConnection();
-    let students = db.collection('CRUD-Data');
+//     let obj = { name, email };
 
-    let readData = await students.find().toArray();
-    res.send(readData)
-})
+//     let checkEmail = students.findOne({ email });
+//     if (checkEmail) {
+//         return res.send("Email  Already Exist")
+//     }
 
 
-// delete
-// app.delete('/student.delete/:id?', async (req, res) => {         // ? is Optional
-app.delete('/student-delete/:id', async (req, res) => {
-    let db = await dbConnection();
-    let students = db.collection('CRUD-Data');
+//     let insertData = await students.insertOne(obj)
 
-    let { id } = req.params;
-
-    let deleteData = await students.deleteOne({ _id: new ObjectId(id) })
-
-    res.send({
-        id,
-        deleteData
-    }
-    )
-
-})
+//     res.send({
+//         obj,
+//         insertData
+//     }
+//     )
+// })
 
 
-// Update
-app.put('/student-update/:id', async (req, res) => {
-    let db = await dbConnection();
-    let students = db.collection('CRUD-Data');
+// // Read
+// app.get('/student-read', async (req, res) => {
+//     let db = await dbConnection();
+//     let students = db.collection('CRUD-Data');
 
-    let { id } = req.params;
-    let { name, email } = req.body;
-
-    let obj = {};
-
-    if (name !== '' && name !== undefined && name !== null) {
-        obj["name"] = name
-    }
-
-    if (email !== '' && email !== undefined && email !== null) {
-        obj["email"] = email
-    }
+//     let readData = await students.find().toArray();
+//     res.send(readData)
+// })
 
 
-    let updateData = await students.updateOne({ _id: new ObjectId(id) }, { $set: obj })
+// // delete
+// // app.delete('/student.delete/:id?', async (req, res) => {         // ? is Optional
+// app.delete('/student-delete/:id', async (req, res) => {
+//     let db = await dbConnection();
+//     let students = db.collection('CRUD-Data');
 
-    res.send({
-        obj,
-        updateData
-    })
+//     let { id } = req.params;
+
+//     let deleteData = await students.deleteOne({ _id: new ObjectId(id) })
+
+//     res.send({
+//         id,
+//         deleteData
+//     }
+//     )
+
+// })
+
+
+// // Update
+// app.put('/student-update/:id', async (req, res) => {
+//     let db = await dbConnection();
+//     let students = db.collection('CRUD-Data');
+
+//     let { id } = req.params;
+//     let { name, email } = req.body;
+
+//     let obj = {};
+
+//     if (name !== '' && name !== undefined && name !== null) {
+//         obj["name"] = name
+//     }
+
+//     if (email !== '' && email !== undefined && email !== null) {
+//         obj["email"] = email
+//     }
+
+
+//     let updateData = await students.updateOne({ _id: new ObjectId(id) }, { $set: obj })
+
+//     res.send({
+//         obj,
+//         updateData
+//     })
 
 
 
-})
+// })
 
 
-app.listen(8000)
+// app.listen(8000)
+
 
 
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 21. Intro to MONGOOSE for MongoDB & CRUD Opr
+
+const express = require("express")
+const app = express();
+// 1. Import Mongoose
+const mongoose = require("mongoose")
+
+app.use(express.json());
+
+
+// 3. Create a Schema
+let userEnquireSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    },
+})
+
+// 4. Create a Model
+const enquiryModal = mongoose.model('user', userEnquireSchema)
+
+// 5. Post API
+app.post('/api/user-insert', (req, res) => {
+    let { name, email, phone, message } = req.body;
+    let user = new enquiryModal({
+        name,
+        email,
+        phone,
+        message
+    })
+
+    user.save().then(() => {
+        res.send({ status: 1, msg: "Enquiry saved successfully" })
+    }).catch((err) => {
+        res.send({ status: 0, msg: "Error while saving enquiry", error: err })
+    })
+})
+
+
+// 6. GET API
+app.get('/api/user-list', async (req, res) => {
+    let enquiryData = await enquiryModal.find()
+    res.send({ status: 1, msg: "Enquiry List", data: enquiryData })
+})
+
+
+// 7. DELETE API
+app.delete('/api/user-delete/:id', async (req, res) => {
+    let { id } = req.params;
+    let deleteData = await enquiryModal.deleteOne({ _id: id })
+    res.send({ status: 1, msg: "deleted", res: deleteData })
+})
+
+
+
+// 8. UPDATE API
+app.put('/api/user-update/:id', async (req, res) => {
+    let { id } = req.params;
+    let { name, email, phone, message } = req.body;
+    let user = {
+        name,
+        email,
+        phone,
+        message
+    }
+
+    let updateData = await enquiryModal.updateOne({ _id: id }, user)
+
+    res.send({ status: 1, msg: "Updated", res: updateData })
+
+
+})
+
+
+
+
+
+
+//2. Connect Mongoose with MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/userData').then(() => {
+    console.log('MongoDB Connected Successfully');
+    app.listen(3000, () => {
+        console.log('Server is Running');
+    })
+}).catch(() => {
+    console.log('MongoDB Connection Failed:', error);
+})
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 

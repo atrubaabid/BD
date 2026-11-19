@@ -1013,6 +1013,120 @@ app.listen(8000)
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 21. Intro to MONGOOSE for MongoDB & CRUD Opr
+Mongoose is an ODM (Object Data Modeling) library for MongoDB and Node.js.It makes it easier to interact with MongoDB using JavaScript.<br>
+
+**How to install Mongoose?**
+```
+npm install mongoose
+```
+**Example of Mongoose**
+1. Import Mongoose
+```js
+const mongoose = require('mongoose');
+```
+2. Connect Mongoose with MongoDB
+
+```js
+//2. Connect Mongoose with MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/userData').then(() => {
+    console.log('MongoDB Connected Successfully');
+    app.listen(3000, () => {
+        console.log('Server is Running');
+    })
+}).catch(() => {
+    console.log('MongoDB Connection Failed:', error);
+})
+```
+3. Create a Schema
+```js
+let userEnquireSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    },
+})
+```
+4. Create a Model
+```js
+const enquiryModal = mongoose.model('user', userEnquireSchema)
+```
+Now you can use the User model to perform database operations.
+
+5. Post API
+```js
+app.post('/api/user-insert', (req, res) => {
+    let { name, email, phone, message } = req.body;
+    let user = new enquiryModal({
+        name,
+        email,
+        phone,
+        message
+    })
+
+    user.save().then(() => {
+        res.send({ status: 1, msg: "Enquiry saved successfully" })
+    }).catch((err) => {
+        res.send({ status: 0, msg: "Error while saving enquiry", error: err })
+    })
+})
+```
+
+6. Get API
+```js
+app.get('/api/user-list', async (req, res) => {
+    let enquiryData = await enquiryModal.find()
+    res.send({ status: 1, msg: "Enquiry List", data: enquiryData })
+})
+```
+
+7. Delete API
+```js
+app.delete('/api/user-delete/:id', async (req, res) => {
+    let { id } = req.params;
+    let deleteData = await enquiryModal.deleteOne({ _id: id })
+    res.send({ status: 1, msg: "deleted", res: deleteData })
+})
+```
+
+8. Update API
+```js
+app.put('/api/user-update/:id', async (req, res) => {
+    let { id } = req.params;
+    let { name, email, phone, message } = req.body;
+    let user = {
+        name,
+        email,
+        phone,
+        message
+    }
+
+    let updateData = await enquiryModal.updateOne({ _id: id }, user)
+
+    res.send({ status: 1, msg: "Updated", res: updateData })
+
+
+})
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 22. MVC-R
+
+
+
+
 
 
 
