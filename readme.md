@@ -1122,7 +1122,29 @@ app.put('/api/user-update/:id', async (req, res) => {
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 22. MVC-R
+## 22. Intro to MVC-R (Model, View, Controller & Routing)
+This is a structure for properly organizing code in backend development (Node.js + Express.js).
+```
+Folder/File      Work
+Models	         Database schemas and models  -> Mongoose
+Controllers	     Request and response logic  -> Express controllers
+Routes           API endpoints  -> Express routes
+View	         React.js frontend
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 23. User Enquiry Form PROJECT
+
+Front-end create from React.js , backend part pending....
+
+
+
+
+
+
 
 
 

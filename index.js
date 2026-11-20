@@ -182,7 +182,7 @@
 
 //-----------------------------------------------------------------------------------------------------------------------readme update
 
-//  13. Get Methods in Express.js   
+//  13. Get Methods in Express.js
 
 
 // const express = require('express');
@@ -403,7 +403,7 @@
 // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-//  18. What is .env  &  Setting up .env in Node.js  
+//  18. What is .env  &  Setting up .env in Node.js
 
 // const express = require('express');
 // require('dotenv').config();
@@ -534,92 +534,123 @@
 
 // 21. Intro to MONGOOSE for MongoDB & CRUD Opr
 
+// const express = require("express")
+// const app = express();
+// // 1. Import Mongoose
+// const mongoose = require("mongoose")
+
+// app.use(express.json());
+
+
+// // 3. Create a Schema
+// let userEnquireSchema = mongoose.Schema({
+//     name: {
+//         type: String,
+//         required: true
+//     },
+//     email: {
+//         type: String,
+//         required: true,
+//     },
+//     phone: {
+//         type: String,
+//         required: true
+//     },
+//     message: {
+//         type: String,
+//         required: true
+//     },
+// })
+
+// // 4. Create a Model
+// const enquiryModal = mongoose.model('user', userEnquireSchema)
+
+// // 5. Post API
+// app.post('/api/user-insert', (req, res) => {
+//     let { name, email, phone, message } = req.body;
+//     let user = new enquiryModal({
+//         name,
+//         email,
+//         phone,
+//         message
+//     })
+
+//     user.save().then(() => {
+//         res.send({ status: 1, msg: "Enquiry saved successfully" })
+//     }).catch((err) => {
+//         res.send({ status: 0, msg: "Error while saving enquiry", error: err })
+//     })
+// })
+
+
+
+// // 6. GET API
+// app.get('/api/user-list', async (req, res) => {
+//     let enquiryData = await enquiryModal.find()
+//     res.send({ status: 1, msg: "Enquiry List", data: enquiryData })
+// })
+
+
+// // 7. DELETE API
+// app.delete('/api/user-delete/:id', async (req, res) => {
+//     let { id } = req.params;
+//     let deleteData = await enquiryModal.deleteOne({ _id: id })
+//     res.send({ status: 1, msg: "deleted", res: deleteData })
+// })
+
+
+
+// // 8. UPDATE API
+// app.put('/api/user-update/:id', async (req, res) => {
+//     let { id } = req.params;
+//     let { name, email, phone, message } = req.body;
+//     let user = {
+//         name,
+//         email,
+//         phone,
+//         message
+//     }
+
+//     let updateData = await enquiryModal.updateOne({ _id: id }, user)
+
+//     res.send({ status: 1, msg: "Updated", res: updateData })
+
+
+// })
+
+
+
+
+
+
+// //2. Connect Mongoose with MongoDB
+// mongoose.connect('mongodb://127.0.0.1:27017/userData').then(() => {
+//     console.log('MongoDB Connected Successfully');
+//     app.listen(3000, () => {
+//         console.log('Server is Running');
+//     })
+// }).catch(() => {
+//     console.log('MongoDB Connection Failed:', error);
+// })
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 22. Intro to MVC-R (Model, View, Controller & Routing)
+
+
 const express = require("express")
 const app = express();
 // 1. Import Mongoose
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { enquiryRoutes } = require("./MVC-R-Project/Routes/web/enquiryRoutes");
 
 app.use(express.json());
 
 
-// 3. Create a Schema
-let userEnquireSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-    },
-    phone: {
-        type: String,
-        required: true
-    },
-    message: {
-        type: String,
-        required: true
-    },
-})
-
-// 4. Create a Model
-const enquiryModal = mongoose.model('user', userEnquireSchema)
-
-// 5. Post API
-app.post('/api/user-insert', (req, res) => {
-    let { name, email, phone, message } = req.body;
-    let user = new enquiryModal({
-        name,
-        email,
-        phone,
-        message
-    })
-
-    user.save().then(() => {
-        res.send({ status: 1, msg: "Enquiry saved successfully" })
-    }).catch((err) => {
-        res.send({ status: 0, msg: "Error while saving enquiry", error: err })
-    })
-})
-
-
-// 6. GET API
-app.get('/api/user-list', async (req, res) => {
-    let enquiryData = await enquiryModal.find()
-    res.send({ status: 1, msg: "Enquiry List", data: enquiryData })
-})
-
-
-// 7. DELETE API
-app.delete('/api/user-delete/:id', async (req, res) => {
-    let { id } = req.params;
-    let deleteData = await enquiryModal.deleteOne({ _id: id })
-    res.send({ status: 1, msg: "deleted", res: deleteData })
-})
-
-
-
-// 8. UPDATE API
-app.put('/api/user-update/:id', async (req, res) => {
-    let { id } = req.params;
-    let { name, email, phone, message } = req.body;
-    let user = {
-        name,
-        email,
-        phone,
-        message
-    }
-
-    let updateData = await enquiryModal.updateOne({ _id: id }, user)
-
-    res.send({ status: 1, msg: "Updated", res: updateData })
-
-
-})
-
-
-
-
+app.use('/web/api/enquiry', enquiryRoutes)
+// http:localhost:3000//web/api/enquiry/user-insert
 
 
 //2. Connect Mongoose with MongoDB
@@ -634,7 +665,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/userData').then(() => {
 
 
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
